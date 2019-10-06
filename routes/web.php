@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::view('test','layouts.master');
+Auth::routes();
+Route::get('/','DashboardController@index');
+// Route::get('/home', 'HomeController@index')->name('home');
