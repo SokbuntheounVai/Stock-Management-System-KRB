@@ -1,10 +1,11 @@
 @extends('layouts.master')
 @section('content')
+
 @if(Session::has('success'))
 <script>
-    Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
+    swalWithBootstrapButtons.fire(
+        'Restore!',
+        'Your Data has been restored.',
         'success'
     )
 </script>
@@ -18,7 +19,6 @@
     })
 </script>
 @endif
-
 <table class="table table-sm table-bordered">
     <thead>
         <tr>
@@ -31,8 +31,7 @@
     </thead>
     <tbody>
         @php($i=1)
-
-        @if(Session::has('have'))
+        @if($users)
         @foreach($users as $u)
         <tr>
             <td>{{$i++}}</td>
@@ -40,24 +39,25 @@
             <td>{{$u->username}}</td>
             <td>{{$u->email}}</td>
             <td>
-                <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?')">Remove
-                    <i class="fa fa-trash"></i>
+                <a id="restore" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to restore it?')">Remove
+                    <i class="fa fa-reset"></i>
                 </a>
             </td>
         </tr>
         @endforeach
-        @endif
-        @if(Session::has('null'))
+        
+        @else
         <tr>
             <td colspan="5" class="text-danger">Data Not Found!</td>
         </tr>
         @endif
+
+
     </tbody>
 </table>
 @endsection
 @section('js')
 <script>
-    var idAuth = {{Auth::user()->id}};
     function confirmAction(massages) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
@@ -77,21 +77,16 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                var archor = document.getElementById('remove');
-                archor.setAttribute('href', "{{url('users/delete/'.$u->id)}}");
-                if (document.getElementById('remove').getAttribute('href') != "http://127.0.0.1:8000/users/delete/" + idAuth) {
-                    archor.click();
-                } else {
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong!',
-                    })
-                }
+                if(Auth::users->id)
+                var archor = document.getElementById('restore');
+                archor.setAttribute('href',"{{url('users/restore/'.$u->id)}}");
+                archor.click();
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
+                var idAuth = {{Auth::user()->id}};
+                alert(idAuth);
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
                     'Your imaginary file is safe :)',

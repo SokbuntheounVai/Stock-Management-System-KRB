@@ -27,6 +27,12 @@
   <!-- bootstrap-daterangepicker -->
   <link href="{{asset('plugin/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
 
+  <!-- sweetAlert -->
+  <link rel="stylesheet" href="{{asset('plugin/sweetAlert2/dist/sweetalert2.min.css')}}">
+
+  <script src="{{asset('plugin/sweetAlert2/dist/sweetalert2.all.min.js')}}"></script>
+  <script src="{{asset('plugin/sweetAlert2/dist/sweetalert2.min.js')}}"></script>
+
   <!-- Custom Theme Style -->
   <link href="{{asset('css/custom.min.css')}}" rel="stylesheet">
   @yield('css')
@@ -68,7 +74,7 @@
                   <ul class="nav child_menu">
                     <li><a href="{{url('users')}}">Users</a></li>
                     <li><a href="index2.html">Role</a></li>
-                    <li><a href="index2.html">Trash</a></li>
+                    <li><a href="{{('users/trash')}}">Trash</a></li>
                   </ul>
                 </li>
               </ul>
