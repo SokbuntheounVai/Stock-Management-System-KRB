@@ -77,7 +77,6 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                if(Auth::users->id)
                 var archor = document.getElementById('restore');
                 archor.setAttribute('href',"{{url('users/restore/'.$u->id)}}");
                 archor.click();
@@ -85,8 +84,6 @@
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                var idAuth = {{Auth::user()->id}};
-                alert(idAuth);
                 swalWithBootstrapButtons.fire(
                     'Cancelled',
                     'Your imaginary file is safe :)',

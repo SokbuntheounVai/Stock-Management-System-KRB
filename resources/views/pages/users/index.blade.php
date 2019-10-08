@@ -77,16 +77,28 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
+                alert(document.getElementById('remove').getAttribute('href')+ " " + "http://127.0.0.1:8000/users/delete/" + idAuth)
                 var archor = document.getElementById('remove');
                 archor.setAttribute('href', "{{url('users/delete/'.$u->id)}}");
+                alert(document.getElementById('remove').getAttribute('href')+ " " + "http://127.0.0.1:8000/users/delete/" + idAuth)
                 if (document.getElementById('remove').getAttribute('href') != "http://127.0.0.1:8000/users/delete/" + idAuth) {
                     archor.click();
                 } else {
-                    Swal.fire({
+                    archor.setAttribute('href',"{{url('users')}}");
+
+                    swalWithBootstrapButtons.fire({
                         type: 'error',
                         title: 'Oops...',
                         text: 'Something went wrong!',
+                        confirmButtonText : 'OK',
+                        preConfirm : () => {
+                            archor.click()
+                        }
                     })
+                    // .then({
+                    //     archor.click();
+                    // })
+                    
                 }
             } else if (
                 /* Read more about handling dismissals below */
