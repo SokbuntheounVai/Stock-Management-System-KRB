@@ -109,11 +109,13 @@
             <div class="nav toggle">
               <a id="menu_toggle"><i class="fa fa-bars"></i></a>
             </div>
-
+            <!-- <div class="nav navbar-nav">
+              <h2>USER</h2>
+            </div> -->
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="{{Auth::user()->photo}}" alt="">{{Auth::user()->name}}
+                  <img src="{{Auth::user()->poto}}" alt="">{{Auth::user()->name}}
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -201,6 +203,23 @@
 
       <!-- page content -->
       <div class="right_col" role="main">
+      <div class="page-title">
+              <div class="title_left">
+                @yield('title-left')
+              </div>
+
+              <div class="title_right">
+                @yield('title-right')
+                <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div> -->
+              </div>
+            </div>
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">

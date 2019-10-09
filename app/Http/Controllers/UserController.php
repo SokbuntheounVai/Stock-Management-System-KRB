@@ -21,6 +21,10 @@ class UserController extends Controller
         
     }
 
+    public function create(){
+        return view('pages.users.create');
+    }
+
     public function delete($id, Request $r){
         
         $i = DB::table('users')->where('id',$id)->update(['active'=>0]);

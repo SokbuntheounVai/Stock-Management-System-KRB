@@ -19,4 +19,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('users/delete/{id}','UserController@delete');
     Route::get('users/trash', 'UserController@trash');
     Route::get('users/restore/{id}', 'UserController@trashRestore');
+    Route::get('users/create', 'UserController@create');
 });
