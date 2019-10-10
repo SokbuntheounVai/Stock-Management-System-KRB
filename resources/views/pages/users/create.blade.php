@@ -28,25 +28,20 @@
     </ol>
 </nav>
 @endsection
-
-<div class="card card-grey">
-    <div class="card-block">
-        <!-- <h1 class="text-secondary">USER</h1> -->
-        <a href="{{url('users')}}" class="btn btn-warning btn-small">Back <i class="fa fa-reply"></i></a>
+<form action="{{url('users/save')}}" method="POST" enctype="multipart/form-data">
+{{csrf_field()}}
+    <div class="card card-grey">
+        <div class="card-block">
+            <!-- <h1 class="text-secondary">USER</h1> -->
+            <a href="{{url('users')}}" class="btn btn-warning btn-small">Back <i class="fa fa-reply"></i></a>
+            <button type="submit" style="float : right" class="btn btn-success btn-small">Save <i class="fa fa-database"></i></button>
+        </div>
     </div>
-</div>
-<hr>
-<div class="card card-gray">
-    <div class="card-block">
-        <form action="{{url('users/save')}}" method="post" enctype="multipart/form-data">
+    <hr>
+    <div class="card card-gray">
+        <div class="card-block">
             <div class="row">
                 <div class="col-md-7">
-                    <div class="form-group row">
-                        <label for="code" class="col-sm-3" style="font-size : 18px">Code <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="text" id="code" name="code" class="form-control" placeholder="Code" required>
-                        </div>
-                    </div>
                     <div class="form-group row">
                         <label for="name" class="col-sm-3" style="font-size : 18px">Full Name <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
@@ -78,21 +73,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="file-field">
-                        <div class="btn btn-primary btn-sm">
-                            <span>Choose file</span>
-                            <input type="file">
-                        </div>
-                        <div class="file-path-wrapper">
-                            <input class="file-path validate" type="text" placeholder="Upload your file">
+                <div class="col-md-2"></div>
+                <div class="col-md-3">
+                    <div class="form-group row">
+                        <label for="photo" style="font-size : 18px" class="col-sm-3">Photo</label>
+                        <div class="col-sm-8">
+                            <input type="file" name="photo" id="photo" class="form-control" accept="image/x-png,image/gif,image/jpeg">
                         </div>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
 @endsection
 @section('js')
 <script>

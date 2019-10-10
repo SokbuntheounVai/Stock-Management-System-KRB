@@ -20,4 +20,5 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('users/trash', 'UserController@trash');
     Route::get('users/restore/{id}', 'UserController@trashRestore');
     Route::get('users/create', 'UserController@create');
+    Route::post('users/save', 'UserController@save');
 });

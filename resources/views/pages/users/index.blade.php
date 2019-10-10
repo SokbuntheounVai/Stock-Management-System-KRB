@@ -73,7 +73,7 @@
                     <td>{{$u->username}}</td>
                     <td>{{$u->email}}</td>
                     <td width="20%" class="text-center">
-                        <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?')">Remove
+                        <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?',{{$u->id}})">Remove
                             <i class="fa fa-trash"></i>
                         </a>
                         <a id="edit" class="btn btn-oval btn-small btn-primary">Edit
@@ -95,13 +95,9 @@
 @endsection
 @section('js')
 <script>
-    var idAuth = {
-        {
-            Auth::user() - > id
-        }
-    }
+    var idAuth = {{Auth::user()->id}}
 
-    function confirmAction(massages) {
+    function confirmAction(massages, id) {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -120,11 +116,9 @@
             reverseButtons: true
         }).then((result) => {
             if (result.value) {
-                alert(document.getElementById('remove').getAttribute('href') + " " + "http://127.0.0.1:8000/users/delete/" + idAuth)
                 var archor = document.getElementById('remove');
-                archor.setAttribute('href', "{{url('users/delete/'.$u->id)}}");
-                alert(document.getElementById('remove').getAttribute('href') + " " + "http://127.0.0.1:8000/users/delete/" + idAuth)
-                if (document.getElementById('remove').getAttribute('href') != "http://127.0.0.1:8000/users/delete/" + idAuth) {
+                archor.setAttribute('href', "{{url('users/delete')}}"+"/"+id);
+                if (id != idAuth) {
                     archor.click();
                 } else {
                     archor.setAttribute('href', "{{url('users')}}");

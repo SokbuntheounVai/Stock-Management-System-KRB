@@ -6,6 +6,28 @@ use Illuminate\Http\Request;
 use Auth,DB;
 class UserController extends Controller
 {
+
+    public function save(Request $request){
+        $data = array(
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt($request->password)
+            // 'name' => $request->name,
+        );
+        if($request->photo){
+            $data['photo'] = $request->file('photo')->store('uploads/users', 'custom');
+        }
+        $i = DB::table('users')->insert($data);
+        if($i){
+            $request->session()->flash('success','Data has been Saved!');
+            return redirect('users/create');
+        }else{
+            $request->session()->flash('error','Fail to save data!');
+            return redirect('users/create');
+        }
+    }
+
     public function index(Request $r){
         $i = $data['users'] = DB::table('users')
         ->where('active','1')
