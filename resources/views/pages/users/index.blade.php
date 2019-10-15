@@ -76,7 +76,7 @@
                         <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?',{{$u->id}})">Remove
                             <i class="fa fa-trash"></i>
                         </a>
-                        <a id="edit" class="btn btn-oval btn-small btn-primary">Edit
+                        <a id="edit" href="{{url('users/edit/'.$u->id)}}" class="btn btn-oval btn-small btn-primary">Edit
                             <i class="fa fa-edit"></i>
                         </a>
                     </td>

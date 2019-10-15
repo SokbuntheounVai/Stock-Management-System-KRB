@@ -19,6 +19,15 @@
     })
 </script>
 @endif
+@section('title-left')
+<nav aria-label="breadcrumb" style="font-size : 20px;">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item active" aria-current="page">Security</li>
+        <li class="breadcrumb-item active" aria-current="page">Users</li>
+        <li class="breadcrumb-item active" aria-current="page">Trash</li>
+    </ol>
+</nav>
+@endsection
 <table class="table table-sm table-bordered">
     <thead>
         <tr>

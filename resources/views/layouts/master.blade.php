@@ -73,8 +73,8 @@
                 <li><a><i class="fa fa-key"></i> Security <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{url('users')}}">Users</a></li>
-                    <li><a href="index2.html">Role</a></li>
-                    <li><a href="{{('users/trash')}}">Trash</a></li>
+                    <li><a href="{{url('users/role')}}">Role</a></li>
+                    <li><a href="{{url('users/trash')}}">Trash</a></li>
                   </ul>
                 </li>
               </ul>

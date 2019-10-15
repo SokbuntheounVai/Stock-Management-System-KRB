@@ -40,7 +40,7 @@
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Security</li>
         <li class="breadcrumb-item active" aria-current="page">Users</li>
-        <li class="breadcrumb-item active" aria-current="page">Create</li>
+        <li class="breadcrumb-item active" aria-current="page">Update</li>
     </ol>
 </nav>
 @endsection
@@ -70,37 +70,38 @@
                 </ul>
             </div>
             @endif
+            @foreach($users as $u)
             <div class="row">
                 <div class="col-md-7">
                     <div class="form-group row">
                         <label for="name" class="col-sm-3" style="font-size : 18px">Full Name <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" value="{{$u->name}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="username" class="col-sm-3" style="font-size : 18px">Username <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" value="{{$u->username}}" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="email" class="col-sm-3" style="font-size : 18px">Email <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{$u->email}}" required>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="password" class="col-sm-3" style="font-size : 18px">Password <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="password" id="password" name="password" onchange="checkPass()" class="form-control" placeholder="Password" required>
+                            <input type="password" id="password" name="password" onchange="checkPass()" class="form-control" value="{{bcrypt($u->password)}}" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="re-password" class="col-sm-3" style="font-size : 18px">Re-Password <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="password" id="re-password" name="re_password" class="form-control" placeholder="Re-Password" required>
+                            <input type="password" id="re-password" name="re_password" class="form-control" value="{{bcrypt($u->password)}}" placeholder="Re-Password" required>
                         </div>
                     </div>
                 </div>
@@ -109,13 +110,14 @@
                     <div class="form-group row">
                         <label for="photo" style="font-size : 18px" class="col-sm-3">Photo</label>
                         <div class="col-sm-8">
-                            <input type="file" name="photo" id="photo" class="form-control" onchange="preview(event)" accept="image/x-png,image/gif,image/jpeg">
+                            <input type="file" name="photo" id="photo" class="form-control" value="{{$u->photo}}"  onchange="preview(event)" accept="image/x-png,image/gif,image/jpeg">
                         </div>
                     </div>
                     <p style="margin-top: 9px; text-align: center">
-                        <img id="preview-photo"  width="50%" src="" alt="">
+                        <img id="preview-photo"  width="50%" src="{{$u->photo}}" alt="">
                     </p>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>
