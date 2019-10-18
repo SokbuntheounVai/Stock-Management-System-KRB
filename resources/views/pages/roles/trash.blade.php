@@ -27,7 +27,7 @@
 <nav aria-label="breadcrumb" style="font-size : 20px;">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Security</li>
-        <li class="breadcrumb-item active" aria-current="page">Users</li>
+        <li class="breadcrumb-item active" aria-current="page">Roles</li>
         <li class="breadcrumb-item active" aria-current="page">Trash</li>
     </ol>
 </nav>
@@ -37,20 +37,16 @@
         <tr>
             <th>#</th>
             <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @php($i=1)
         @if($users)
-        @foreach($users as $u)
+        @foreach($roles as $u)
         <tr>
             <td>{{$i++}}</td>
             <td>{{$u->name}}</td>
-            <td>{{$u->username}}</td>
-            <td>{{$u->email}}</td>
             <td>
                 <a id="restore" class="btn btn-oval btn-small btn-warning" onclick="confirmAction('Do you want to restore it?')">Restore
                     <i class="fa fa-reset"></i>

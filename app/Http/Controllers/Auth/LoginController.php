@@ -38,6 +38,13 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    public function authenticate()
+    {
+        if (Auth::attempt(['username' => $username, 'password' => $password, 'active' => 1])) {
+            return redirect()->intended('/');
+        }
+    }
+
     public function username(){
         return 'username';
     }

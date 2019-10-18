@@ -10,26 +10,30 @@
             repassword.setAttribute('style' ,'border : 1px solid red');
         }else{
             var formCreate = document.getElementById('form-create');
-            formCreate.setAttribute('action',"{{url('users/save')}}");
-            formCreate.click();
+            formCreate.setAttribute('action',"{{url('users/update')}}");
+            // formCreate.click();
 
         }
     }
 </script>
 @if(Session::has('success'))
+<p id="ms-success" style="display: none">{{session('success')}}</p>
 <script>
+    var ms = document.getElementById('ms-success').value;
     Swal.fire(
-        'Deleted!',
-        'Your file has been deleted.',
+        'Updated!',
+        ms,
         'success'
     )
 </script>
 @endif
 @if(Session::has('error'))
+<p id="ms-error" style="display: none">{{session('error')}}</p>
 <script>
+    var ms = document.getElementById('ms-error').value;
     Swal.fire({
         type: 'error',
-        title: 'Oops...',
+        title: ms,
         text: 'Something went wrong!',
     })
 </script>
@@ -71,6 +75,7 @@
             </div>
             @endif
             @foreach($users as $u)
+            <input type="hidden" name="id" value="{{$u->id}}">
             <div class="row">
                 <div class="col-md-7">
                     <div class="form-group row">
@@ -94,14 +99,16 @@
 
                     <div class="form-group row">
                         <label for="password" class="col-sm-3" style="font-size : 18px">Password <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="password" id="password" name="password" onchange="checkPass()" class="form-control" value="{{bcrypt($u->password)}}" placeholder="Password" required>
+                        <div class="col-sm-8">  
+                            <input type="password" id="password" name="password" onchange="checkPass()" class="form-control" placeholder="Password">
+                            <p class="small-text">Keep it blank to use the password!</p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="re-password" class="col-sm-3" style="font-size : 18px">Re-Password <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="password" id="re-password" name="re_password" class="form-control" value="{{bcrypt($u->password)}}" placeholder="Re-Password" required>
+                            <input type="password" id="re-password" name="re_password" class="form-control" placeholder="Re-Password">
+                            <p class="small-text">Keep it blank to use the password!</p>
                         </div>
                     </div>
                 </div>
@@ -110,11 +117,11 @@
                     <div class="form-group row">
                         <label for="photo" style="font-size : 18px" class="col-sm-3">Photo</label>
                         <div class="col-sm-8">
-                            <input type="file" name="photo" id="photo" class="form-control" value="{{$u->photo}}"  onchange="preview(event)" accept="image/x-png,image/gif,image/jpeg">
+                            <input type="file" name="photo" id="photo" class="form-control"  onchange="preview(event)" accept="image/x-png,image/gif,image/jpeg">
                         </div>
                     </div>
                     <p style="margin-top: 9px; text-align: center">
-                        <img id="preview-photo"  width="50%" src="{{$u->photo}}" alt="">
+                        <img id="preview-photo"  width="50%" src="{{asset($u->photo)}}" alt="">
                     </p>
                 </div>
                 @endforeach

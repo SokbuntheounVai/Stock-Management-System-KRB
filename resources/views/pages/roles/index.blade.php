@@ -49,7 +49,7 @@
 <nav aria-label="breadcrumb" style="font-size : 20px;">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Security</li>
-        <li class="breadcrumb-item active" aria-current="page">Users</li>
+        <li class="breadcrumb-item active" aria-current="page">Roles</li>
     </ol>
 </nav>
 @endsection
@@ -76,9 +76,6 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -93,13 +90,10 @@
                 ?>
 
                 @if(Session::has('have'))
-                @foreach($users as $u)
+                @foreach($roles as $u)
                 <tr>
                     <td>{{$i++}}</td>
                     <td>{{$u->name}}</td>
-                    <td>{{$u->username}}</td>
-                    <td>{{$u->email}}</td>
-                    <td>{{$u->r_name}}</td>
                     <td width="20%" class="text-center">
                         <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?',{{$u->id}})">Remove
                             <i class="fa fa-trash"></i>
