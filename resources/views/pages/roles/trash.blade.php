@@ -42,7 +42,7 @@
     </thead>
     <tbody>
         @php($i=1)
-        @if($users)
+        @if($roles)
         @foreach($roles as $u)
         <tr>
             <td>{{$i++}}</td>

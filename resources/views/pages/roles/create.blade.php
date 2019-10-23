@@ -1,20 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <script>
-    function checkedPass(){
-        var password = document.getElementById('password');
-        var repassword = document.getElementById('re-password');
 
-        if(password.value!=repassword.value){
-            password.setAttribute('style' ,'border : 1px solid red');
-            repassword.setAttribute('style' ,'border : 1px solid red');
-        }else{
-            var formCreate = document.getElementById('form-create');
-            formCreate.setAttribute('action',"{{url('users/save')}}");
-            formCreate.click();
-
-        }
-    }
 </script>
 
 @if(Session::has('c-success'))
@@ -44,18 +31,18 @@
 <nav aria-label="breadcrumb" style="font-size : 20px;">
     <ol class="breadcrumb">
         <li class="breadcrumb-item active" aria-current="page">Security</li>
-        <li class="breadcrumb-item active" aria-current="page">Users</li>
+        <li class="breadcrumb-item active" aria-current="page">Roles</li>
         <li class="breadcrumb-item active" aria-current="page">Create</li>
     </ol>
 </nav>
 @endsection
-<form id="form-create" action="#"  method="POST" enctype="multipart/form-data">
+<form action="{{url('roles/save')}}"  method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
     <div class="card card-grey">
         <div class="card-block">
             <!-- <h1 class="text-secondary">USER</h1> -->
-            <a href="{{url('users')}}" class="btn btn-warning btn-small">Back <i class="fa fa-reply"></i></a>
-            <button style="float : right" onclick="checkedPass()" class="btn btn-success btn-small">Save <i class="fa fa-database"></i></button>
+            <a href="{{url('roles')}}" class="btn btn-warning btn-small">Back <i class="fa fa-reply"></i></a>
+            <button style="float : right"  class="btn btn-success btn-small">Save <i class="fa fa-database"></i></button>
         </div>
     </div>
     <hr>
@@ -78,58 +65,14 @@
             <div class="row">
                 <div class="col-md-7">
                     <div class="form-group row">
-                        <label for="name" class="col-sm-3" style="font-size : 18px">Full Name <span class="text-danger">*</span></label>
+                        <label for="name" class="col-sm-3" style="font-size : 18px">Name <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="username" class="col-sm-3" style="font-size : 18px">Username <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="email" class="col-sm-3" style="font-size : 18px">Email <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="password" class="col-sm-3" style="font-size : 18px">Password <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="password" id="password" name="password" onchange="checkPass()" class="form-control" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="re-password" class="col-sm-3" style="font-size : 18px">Re-Password <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <input type="password" id="re-password" name="re_password" class="form-control" placeholder="Re-Password" required>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="roles" class="col-sm-3" style="font-size : 18px">Role <span class="text-danger">*</span></label>
-                        <div class="col-sm-8">
-                            <select class="form-control" name="role" id="roles">
-                                @foreach($roles as $r)
-                                    <option value="{{$r->id}}">{{$r->name}}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2"></div>
                 <div class="col-md-3">
-                    <div class="form-group row">
-                        <label for="photo" style="font-size : 18px" class="col-sm-3">Photo</label>
-                        <div class="col-sm-8">
-                            <input type="file" name="photo" id="photo" class="form-control" onchange="preview(event)" accept="image/x-png,image/gif,image/jpeg">
-                        </div>
-                    </div>
-                    <p style="margin-top: 9px; text-align: center">
-                        <img id="preview-photo"  width="50%" src="" alt="">
-                    </p>
                 </div>
             </div>
         </div>
@@ -138,9 +81,9 @@
 @endsection
 @section('js')
 <script>
-    function preview(evt){
-        let checkedPhoto = document.getElementById('preview-photo');
-        checkedPhoto.src = URL.createObjectURL(evt.target.files[0]);
-    }
+    // function preview(evt){
+    //     let checkedPhoto = document.getElementById('preview-photo');
+    //     checkedPhoto.src = URL.createObjectURL(evt.target.files[0]);
+    // }
 </script>
 @endsection

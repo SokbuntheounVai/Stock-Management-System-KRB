@@ -23,5 +23,12 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('users/save', 'UserController@save');
     Route::get('users/edit/{id}', 'UserController@edit');
     Route::post('users/update', 'UserController@update');
+    Route::get('roles/edit/{id}', 'RolesController@edit');
     Route::get('roles', 'RolesController@index');
+    Route::get('roles/create', 'RolesController@create');
+    Route::post('roles/save', 'RolesController@save');
+    Route::post('roles/update', 'RolesController@update');
+    Route::get('roles/delete/{id}', 'RolesController@delete');
+    Route::get('roles/trash', 'RolesController@trash');
+    Route::get('roles/restore/{id}', 'RolesController@trashRestore');
 });

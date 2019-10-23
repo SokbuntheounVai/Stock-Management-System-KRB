@@ -49,7 +49,7 @@ class UserController extends Controller
         $validate = $request->validate([
                 'name' => 'required|min:3|max:50',
                 'username' => 'required|min:3|unique:users|max:50',
-                'email' => 'required',
+                'email' => 'required|unique:users,email',
                 'password' => 'required|min:5'
             ]);
     
@@ -57,8 +57,8 @@ class UserController extends Controller
                 'name' => $request->name,
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => bcrypt($request->password)
-                // 'name' => $request->name,
+                'password' => bcrypt($request->password),
+                'role_id' => $request->role
             );
             if($request->photo){
                 $data['photo'] = $request->file('photo')->store('uploads/users', 'custom');

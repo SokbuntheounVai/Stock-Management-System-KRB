@@ -80,7 +80,7 @@
                     <div class="form-group row">
                         <label for="name" class="col-sm-3" style="font-size : 18px">Full Name <span class="text-danger">*</span></label>
                         <div class="col-sm-8">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" required>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Full Name" value="" required>
                         </div>
                     </div>
                     <div class="form-group row">

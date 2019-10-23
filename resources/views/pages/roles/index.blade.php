@@ -57,7 +57,7 @@
 <div class="card card-grey">
     <div class="card-block">
         <!-- <h1 class="text-secondary">USER</h1> -->
-        <a href="{{url('users/create')}}" class="btn btn-success btn-small">Create <i class="fa fa-plus"></i></a>
+        <a href="{{url('roles/create')}}" class="btn btn-success btn-small">Create <i class="fa fa-plus"></i></a>
         <div class="col-md-3 col-sm-3 col-xs-12 form-group pull-right top_search">
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for...">
