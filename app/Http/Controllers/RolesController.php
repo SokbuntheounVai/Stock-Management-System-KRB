@@ -28,7 +28,7 @@ class RolesController extends Controller
 
     public function update(Request $request){
         $validate = $request->validate([
-            'name' => 'required|min:3|max:50',
+            'name' => 'required|min:3|max:50|unique:roles,name',
         ]);
 
         $data = array(
@@ -47,7 +47,7 @@ class RolesController extends Controller
     public function save(Request $request){
             
         $validate = $request->validate([
-                'name' => 'required|min:3|max:50',
+                'name' => 'required|min:3|max:50|unique:roles,name',
             ]);
     
             $data = array( 'name' => $request->name );
