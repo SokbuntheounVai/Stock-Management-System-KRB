@@ -26,9 +26,8 @@
 @section('title-left')
 <nav aria-label="breadcrumb" style="font-size : 20px;">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Security</li>
-        <li class="breadcrumb-item active" aria-current="page">Users</li>
         <li class="breadcrumb-item active" aria-current="page">Trash</li>
+        <li class="breadcrumb-item active" aria-current="page">Users</li>
     </ol>
 </nav>
 @endsection
@@ -43,8 +42,15 @@
         </tr>
     </thead>
     <tbody>
-        @php($i=1)
-        @if($users)
+        <?php 
+            $page = @$_GET['page'];
+            if(!$page){
+                $page = 1;
+            }
+
+            $i = config('app.row') * ($page - 1) + 1;
+        ?>
+        @if(Session::has('found'))
         @foreach($users as $u)
         <tr>
             <td>{{$i++}}</td>
@@ -53,17 +59,17 @@
             <td>{{$u->email}}</td>
             <td>
                 <a id="restore" class="btn btn-oval btn-small btn-warning" onclick="confirmAction('Do you want to restore it?')">Restore
-                    <i class="fa fa-reset"></i>
+                    <i class="fa fa-reset"></i> <p id="user-id" hidden>{{$u->id}}</p>
                 </a>
             </td>
         </tr>
         @endforeach
-        
         @else
         <tr>
-            <td colspan="5" class="text-danger">Data Not Found!</td>
+            <td colspan="5" class="text-danger text-center" style="font-size: 30px">Data Not Found!</td>
         </tr>
         @endif
+
 
 
     </tbody>
@@ -72,6 +78,8 @@
 @section('js')
 <script>
     function confirmAction(massages) {
+        var id = document.getElementById('user-id').innerHTML;
+        var link = "{{url('users/restore')}}"+"/"+id
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -91,7 +99,7 @@
         }).then((result) => {
             if (result.value) {
                 var archor = document.getElementById('restore');
-                archor.setAttribute('href',"{{url('users/restore/'.$u->id)}}");
+                archor.setAttribute('href', link);
                 archor.click();
             } else if (
                 /* Read more about handling dismissals below */

@@ -74,7 +74,13 @@
                   <ul class="nav child_menu">
                     <li><a href="{{url('users')}}">Users</a></li>
                     <li><a href="{{url('roles')}}">Roles</a></li>
-                    <li><a href="{{url('users/trash')}}">Trash</a></li>
+                  </ul>
+                </li>
+                <li>
+                  <a> <i class="fa fa-trash"></i> Trash <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{{url('users/trash')}}">Users</a></li>
+                    <li><a href="{{url('roles/trash')}}">Roles</a></li>
                   </ul>
                 </li>
               </ul>
@@ -203,14 +209,14 @@
 
       <!-- page content -->
       <div class="right_col" role="main">
-      <div class="page-title">
-              <div class="title_left">
-                @yield('title-left')
-              </div>
+        <div class="page-title">
+          <div class="title_left">
+            @yield('title-left')
+          </div>
 
-              <div class="title_right">
-                @yield('title-right')
-                <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+          <div class="title_right">
+            @yield('title-right')
+            <!-- <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
                     <span class="input-group-btn">
@@ -218,8 +224,8 @@
                     </span>
                   </div>
                 </div> -->
-              </div>
-            </div>
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="dashboard_graph">

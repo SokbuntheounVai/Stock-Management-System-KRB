@@ -50,6 +50,7 @@
 @endsection
 <form id="form-create" action="#"  method="POST" enctype="multipart/form-data">
     {{csrf_field()}}
+    {{method_field('POST')}}
     <div class="card card-grey">
         <div class="card-block">
             <!-- <h1 class="text-secondary">USER</h1> -->

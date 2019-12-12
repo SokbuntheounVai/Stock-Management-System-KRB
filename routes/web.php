@@ -12,7 +12,7 @@
 */
 
 Auth::routes();
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>'auth'],function(){ 
     Route::get('/','DashboardController@index');
     Route::get('logout', 'UserController@logout');
     Route::get('users', 'UserController@index');

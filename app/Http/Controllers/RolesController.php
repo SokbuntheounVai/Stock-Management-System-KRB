@@ -85,7 +85,15 @@ class RolesController extends Controller
         ->where('active','0')
         ->orderBy('id','desc')
         ->paginate(22);
-        return view('pages.roles.trash',$data);
+        if($data['roles']->total() == 0){
+            session()->flash('Null', 'Not Found!');
+            // dd('null');
+            return view('pages.roles.trash',$data);
+        }else{
+            session()->flash('found',"");
+            // dd($data);
+            return view('pages.roles.trash',$data);
+        }
     }
 
     public function trashRestore($id, Request $r){

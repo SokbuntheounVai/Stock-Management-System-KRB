@@ -98,7 +98,7 @@
                         <a id="remove" class="btn btn-oval btn-small btn-danger" onclick="confirmAction('Do you want to delete it?',{{$u->id}})">Remove
                             <i class="fa fa-trash"></i>
                         </a>
-                        <a id="edit" href="{{url('users/edit/'.$u->id)}}" class="btn btn-oval btn-small btn-primary">Edit
+                        <a id="edit" href="{{url('roles/edit/'.$u->id)}}" class="btn btn-oval btn-small btn-primary">Edit
                             <i class="fa fa-edit"></i>
                         </a>
                     </td>
@@ -139,11 +139,11 @@
         }).then((result) => {
             if (result.value) {
                 var archor = document.getElementById('remove');
-                archor.setAttribute('href', "{{url('users/delete')}}"+"/"+id);
+                archor.setAttribute('href', "{{url('roles/delete')}}"+"/"+id);
                 if (id != idAuth) {
                     archor.click();
                 } else {
-                    archor.setAttribute('href', "{{url('users')}}");
+                    archor.setAttribute('href', "{{url('roles')}}");
 
                     swalWithBootstrapButtons.fire({
                         type: 'error',

@@ -26,9 +26,8 @@
 @section('title-left')
 <nav aria-label="breadcrumb" style="font-size : 20px;">
     <ol class="breadcrumb">
-        <li class="breadcrumb-item active" aria-current="page">Security</li>
-        <li class="breadcrumb-item active" aria-current="page">Roles</li>
         <li class="breadcrumb-item active" aria-current="page">Trash</li>
+        <li class="breadcrumb-item active" aria-current="page">Roles</li>
     </ol>
 </nav>
 @endsection
@@ -42,22 +41,22 @@
     </thead>
     <tbody>
         @php($i=1)
-        @if($roles)
-        @foreach($roles as $u)
+        @if(Session::has('found'))
+        @foreach($roles as $role)
         <tr>
             <td>{{$i++}}</td>
-            <td>{{$u->name}}</td>
+            <td>{{$role->name}}</td>
             <td>
                 <a id="restore" class="btn btn-oval btn-small btn-warning" onclick="confirmAction('Do you want to restore it?')">Restore
-                    <i class="fa fa-reset"></i>
+                    <i class="fa fa-reset"></i> <p id="role-id" hidden>{{$role->id}}</p>
                 </a>
             </td>
         </tr>
         @endforeach
-        
+
         @else
         <tr>
-            <td colspan="5" class="text-danger">Data Not Found!</td>
+            <td colspan="5" class="text-danger text-center" style="font-size: 30px">Data Not Found!</td>
         </tr>
         @endif
 
@@ -68,6 +67,7 @@
 @section('js')
 <script>
     function confirmAction(massages) {
+        var role_id = document.getElementById('role-id').innerHTML;
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -87,7 +87,7 @@
         }).then((result) => {
             if (result.value) {
                 var archor = document.getElementById('restore');
-                archor.setAttribute('href',"{{url('users/restore/'.$u->id)}}");
+                archor.setAttribute('href', "{{url('roles/restore')}}"+"/"+role_id);
                 archor.click();
             } else if (
                 /* Read more about handling dismissals below */

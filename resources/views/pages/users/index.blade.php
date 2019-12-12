@@ -75,6 +75,7 @@
             <thead style="font-size : 15px">
                 <tr>
                     <th>#</th>
+                    <th>Photo</th>
                     <th>Name</th>
                     <th>Username</th>
                     <th>Email</th>
@@ -96,6 +97,7 @@
                 @foreach($users as $u)
                 <tr>
                     <td>{{$i++}}</td>
+                    <td><img src="{{asset($u->photo)}}" alt="{{$u->name}}'s photo" height="50"></td>
                     <td>{{$u->name}}</td>
                     <td>{{$u->username}}</td>
                     <td>{{$u->email}}</td>
